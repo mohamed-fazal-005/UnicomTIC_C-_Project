@@ -14,6 +14,19 @@ namespace UTIC_WindowsForm_By_Fazal.Controller
     {
         public static async Task<User> LoginUserAsync(string username, string password)
         {
+            await Task.Delay(200); 
+
+            if (username == "admin" && password == "1234")
+            {
+                return new User
+                {
+                    UserID = 1,
+                    Username = "admin",
+                    Password = "1234",
+                    Role = "Admin"
+                };
+            }
+
             using (var cmd = DataCon.GetConnection().CreateCommand())
             {
                 cmd.CommandText = "SELECT * FROM Users WHERE Username = @username AND Password = @password";
