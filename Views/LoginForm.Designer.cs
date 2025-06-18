@@ -34,6 +34,7 @@
             txtPassword = new TextBox();
             btnLogin = new Button();
             panel1 = new Panel();
+            label1 = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -85,7 +86,8 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.MediumPurple;
+            panel1.BackColor = Color.Silver;
+            panel1.Controls.Add(label1);
             panel1.Controls.Add(lblUsername);
             panel1.Controls.Add(btnLogin);
             panel1.Controls.Add(txtUsername);
@@ -97,11 +99,22 @@
             panel1.TabIndex = 5;
             panel1.Paint += panel1_Paint;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.WhiteSmoke;
+            label1.Font = new Font("Cambria", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(148, 47);
+            label1.Name = "label1";
+            label1.Size = new Size(212, 15);
+            label1.TabIndex = 5;
+            label1.Text = "Please Enter Username, Password";
+            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.DarkSlateBlue;
+            BackColor = Color.Gray;
             ClientSize = new Size(800, 450);
             Controls.Add(panel1);
             Name = "LoginForm";
@@ -120,5 +133,6 @@
         private TextBox txtPassword;
         private Button btnLogin;
         private Panel panel1;
+        private Label label1;
     }
 }

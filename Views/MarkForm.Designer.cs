@@ -38,13 +38,16 @@
             btnEditMark = new Button();
             btnDeleteMark = new Button();
             dgvMark = new DataGridView();
+            panel1 = new Panel();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvMark).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // lblStudent
             // 
             lblStudent.AutoSize = true;
-            lblStudent.Location = new Point(176, 54);
+            lblStudent.Location = new Point(177, 68);
             lblStudent.Name = "lblStudent";
             lblStudent.Size = new Size(48, 15);
             lblStudent.TabIndex = 0;
@@ -53,7 +56,7 @@
             // lblExam
             // 
             lblExam.AutoSize = true;
-            lblExam.Location = new Point(176, 93);
+            lblExam.Location = new Point(177, 106);
             lblExam.Name = "lblExam";
             lblExam.Size = new Size(35, 15);
             lblExam.TabIndex = 1;
@@ -62,16 +65,17 @@
             // lblScore
             // 
             lblScore.AutoSize = true;
-            lblScore.Location = new Point(176, 133);
+            lblScore.Location = new Point(176, 147);
             lblScore.Name = "lblScore";
-            lblScore.Size = new Size(36, 15);
+            lblScore.Size = new Size(34, 15);
             lblScore.TabIndex = 2;
-            lblScore.Text = "Score";
+            lblScore.Text = "Mark";
+            lblScore.Click += lblScore_Click;
             // 
             // cmbStudent
             // 
             cmbStudent.FormattingEnabled = true;
-            cmbStudent.Location = new Point(287, 46);
+            cmbStudent.Location = new Point(257, 60);
             cmbStudent.Name = "cmbStudent";
             cmbStudent.Size = new Size(75, 23);
             cmbStudent.TabIndex = 3;
@@ -79,21 +83,21 @@
             // cmbExam
             // 
             cmbExam.FormattingEnabled = true;
-            cmbExam.Location = new Point(287, 85);
+            cmbExam.Location = new Point(257, 98);
             cmbExam.Name = "cmbExam";
             cmbExam.Size = new Size(75, 23);
             cmbExam.TabIndex = 4;
             // 
             // txtScore
             // 
-            txtScore.Location = new Point(241, 125);
+            txtScore.Location = new Point(257, 139);
             txtScore.Name = "txtScore";
-            txtScore.Size = new Size(211, 23);
+            txtScore.Size = new Size(188, 23);
             txtScore.TabIndex = 5;
             // 
             // btnAddMark
             // 
-            btnAddMark.Location = new Point(176, 177);
+            btnAddMark.Location = new Point(176, 181);
             btnAddMark.Name = "btnAddMark";
             btnAddMark.Size = new Size(75, 23);
             btnAddMark.TabIndex = 6;
@@ -103,7 +107,7 @@
             // 
             // btnEditMark
             // 
-            btnEditMark.Location = new Point(273, 177);
+            btnEditMark.Location = new Point(272, 181);
             btnEditMark.Name = "btnEditMark";
             btnEditMark.Size = new Size(75, 23);
             btnEditMark.TabIndex = 7;
@@ -113,7 +117,7 @@
             // 
             // btnDeleteMark
             // 
-            btnDeleteMark.Location = new Point(377, 177);
+            btnDeleteMark.Location = new Point(370, 181);
             btnDeleteMark.Name = "btnDeleteMark";
             btnDeleteMark.Size = new Size(75, 23);
             btnDeleteMark.TabIndex = 8;
@@ -124,33 +128,56 @@
             // dgvMark
             // 
             dgvMark.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMark.Location = new Point(97, 231);
+            dgvMark.Location = new Point(88, 224);
             dgvMark.Name = "dgvMark";
-            dgvMark.Size = new Size(449, 188);
+            dgvMark.Size = new Size(449, 147);
             dgvMark.TabIndex = 9;
             dgvMark.CellContentClick += dgvMark_CellContentClick;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.Silver;
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(lblStudent);
+            panel1.Controls.Add(btnDeleteMark);
+            panel1.Controls.Add(dgvMark);
+            panel1.Controls.Add(btnEditMark);
+            panel1.Controls.Add(cmbStudent);
+            panel1.Controls.Add(lblExam);
+            panel1.Controls.Add(cmbExam);
+            panel1.Controls.Add(btnAddMark);
+            panel1.Controls.Add(lblScore);
+            panel1.Controls.Add(txtScore);
+            panel1.Location = new Point(66, 25);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(669, 384);
+            panel1.TabIndex = 10;
+            panel1.Paint += panel1_Paint;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(32, 26);
+            label1.Name = "label1";
+            label1.Size = new Size(108, 21);
+            label1.TabIndex = 10;
+            label1.Text = "Mark Details :";
             // 
             // MarkForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Gray;
             ClientSize = new Size(800, 450);
-            Controls.Add(dgvMark);
-            Controls.Add(btnDeleteMark);
-            Controls.Add(btnEditMark);
-            Controls.Add(btnAddMark);
-            Controls.Add(txtScore);
-            Controls.Add(cmbExam);
-            Controls.Add(cmbStudent);
-            Controls.Add(lblScore);
-            Controls.Add(lblExam);
-            Controls.Add(lblStudent);
+            Controls.Add(panel1);
             Name = "MarkForm";
             Text = "MarkForm";
             Load += MarkForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvMark).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -165,5 +192,7 @@
         private Button btnEditMark;
         private Button btnDeleteMark;
         private DataGridView dgvMark;
+        private Panel panel1;
+        private Label label1;
     }
 }

@@ -136,6 +136,7 @@
             // 
             // panel1
             // 
+            panel1.BackColor = Color.White;
             panel1.Controls.Add(btnStaff);
             panel1.Controls.Add(btnRoom);
             panel1.Controls.Add(btnUser);
@@ -164,29 +165,31 @@
             // lblWelcom
             // 
             lblWelcom.AutoSize = true;
-            lblWelcom.BackColor = Color.Gray;
-            lblWelcom.Font = new Font("Segoe UI Black", 15.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            lblWelcom.Location = new Point(340, 57);
+            lblWelcom.BackColor = Color.White;
+            lblWelcom.Font = new Font("Arial Rounded MT Bold", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblWelcom.Location = new Point(387, 165);
             lblWelcom.Name = "lblWelcom";
-            lblWelcom.Size = new Size(106, 30);
+            lblWelcom.Size = new Size(104, 24);
             lblWelcom.TabIndex = 12;
             lblWelcom.Text = "Welcome";
             lblWelcom.Click += label1_Click;
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(487, 317);
+            btnLogout.BackColor = SystemColors.ActiveCaption;
+            btnLogout.Location = new Point(632, 361);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(75, 23);
+            btnLogout.Size = new Size(75, 34);
             btnLogout.TabIndex = 13;
             btnLogout.Text = "Logout";
-            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.UseVisualStyleBackColor = false;
             btnLogout.Click += btnLogout_Click;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Silver;
             ClientSize = new Size(800, 450);
             Controls.Add(btnLogout);
             Controls.Add(lblWelcom);

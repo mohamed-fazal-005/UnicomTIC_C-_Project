@@ -144,5 +144,15 @@ namespace UTIC_WindowsForm_By_Fazal.Views
                 return Text;
             }
         }
+
+        private void lblScore_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

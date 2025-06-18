@@ -40,13 +40,16 @@
             btnEdit = new Button();
             btnDelete = new Button();
             dgvLecture = new DataGridView();
+            panel1 = new Panel();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvLecture).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // lblLectureName
             // 
             lblLectureName.AutoSize = true;
-            lblLectureName.Location = new Point(206, 45);
+            lblLectureName.Location = new Point(130, 55);
             lblLectureName.Name = "lblLectureName";
             lblLectureName.Size = new Size(81, 15);
             lblLectureName.TabIndex = 0;
@@ -55,7 +58,7 @@
             // lblSubject
             // 
             lblSubject.AutoSize = true;
-            lblSubject.Location = new Point(206, 81);
+            lblSubject.Location = new Point(130, 95);
             lblSubject.Name = "lblSubject";
             lblSubject.Size = new Size(45, 15);
             lblSubject.TabIndex = 1;
@@ -64,7 +67,7 @@
             // lblQualification
             // 
             lblQualification.AutoSize = true;
-            lblQualification.Location = new Point(206, 116);
+            lblQualification.Location = new Point(130, 135);
             lblQualification.Name = "lblQualification";
             lblQualification.Size = new Size(75, 15);
             lblQualification.TabIndex = 2;
@@ -73,7 +76,7 @@
             // lblEmail
             // 
             lblEmail.AutoSize = true;
-            lblEmail.Location = new Point(206, 152);
+            lblEmail.Location = new Point(130, 172);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(36, 15);
             lblEmail.TabIndex = 3;
@@ -81,35 +84,35 @@
             // 
             // txtLectureName
             // 
-            txtLectureName.Location = new Point(307, 37);
+            txtLectureName.Location = new Point(247, 47);
             txtLectureName.Name = "txtLectureName";
             txtLectureName.Size = new Size(172, 23);
             txtLectureName.TabIndex = 4;
             // 
             // txtSubject
             // 
-            txtSubject.Location = new Point(307, 73);
+            txtSubject.Location = new Point(247, 87);
             txtSubject.Name = "txtSubject";
             txtSubject.Size = new Size(172, 23);
             txtSubject.TabIndex = 5;
             // 
             // txtQualification
             // 
-            txtQualification.Location = new Point(307, 108);
+            txtQualification.Location = new Point(247, 127);
             txtQualification.Name = "txtQualification";
             txtQualification.Size = new Size(172, 23);
             txtQualification.TabIndex = 6;
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(307, 144);
+            txtEmail.Location = new Point(247, 164);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(172, 23);
             txtEmail.TabIndex = 7;
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(206, 198);
+            btnAdd.Location = new Point(130, 202);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(75, 23);
             btnAdd.TabIndex = 8;
@@ -119,7 +122,7 @@
             // 
             // btnEdit
             // 
-            btnEdit.Location = new Point(307, 198);
+            btnEdit.Location = new Point(237, 202);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(75, 23);
             btnEdit.TabIndex = 9;
@@ -129,7 +132,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(404, 198);
+            btnDelete.Location = new Point(344, 202);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(75, 23);
             btnDelete.TabIndex = 10;
@@ -140,35 +143,57 @@
             // dgvLecture
             // 
             dgvLecture.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvLecture.Location = new Point(136, 247);
+            dgvLecture.Location = new Point(65, 243);
             dgvLecture.Name = "dgvLecture";
-            dgvLecture.Size = new Size(432, 178);
+            dgvLecture.Size = new Size(432, 128);
             dgvLecture.TabIndex = 11;
             dgvLecture.CellContentClick += dgvLecture_CellContentClick;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.Silver;
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(lblLectureName);
+            panel1.Controls.Add(btnDelete);
+            panel1.Controls.Add(dgvLecture);
+            panel1.Controls.Add(btnEdit);
+            panel1.Controls.Add(txtLectureName);
+            panel1.Controls.Add(btnAdd);
+            panel1.Controls.Add(lblSubject);
+            panel1.Controls.Add(txtSubject);
+            panel1.Controls.Add(lblQualification);
+            panel1.Controls.Add(txtEmail);
+            panel1.Controls.Add(txtQualification);
+            panel1.Controls.Add(lblEmail);
+            panel1.Location = new Point(63, 32);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(662, 388);
+            panel1.TabIndex = 12;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(22, 19);
+            label1.Name = "label1";
+            label1.Size = new Size(126, 21);
+            label1.TabIndex = 12;
+            label1.Text = "Lecture Details :";
             // 
             // LectureForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Gray;
             ClientSize = new Size(800, 450);
-            Controls.Add(dgvLecture);
-            Controls.Add(btnDelete);
-            Controls.Add(btnEdit);
-            Controls.Add(btnAdd);
-            Controls.Add(txtEmail);
-            Controls.Add(txtQualification);
-            Controls.Add(txtSubject);
-            Controls.Add(txtLectureName);
-            Controls.Add(lblEmail);
-            Controls.Add(lblQualification);
-            Controls.Add(lblSubject);
-            Controls.Add(lblLectureName);
+            Controls.Add(panel1);
             Name = "LectureForm";
             Text = "LectureForm";
             Load += LectureForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvLecture).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -185,5 +210,7 @@
         private Button btnEdit;
         private Button btnDelete;
         private DataGridView dgvLecture;
+        private Panel panel1;
+        private Label label1;
     }
 }
