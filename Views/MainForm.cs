@@ -121,5 +121,14 @@ namespace UTIC_WindowsForm_By_Fazal.Views
         {
             new StaffForm().ShowDialog();
         }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            this.Hide(); 
+
+            LoginForm loginForm = new LoginForm();
+            loginForm.FormClosed += (s, args) => this.Close();
+            loginForm.Show();
+        }
     }
 }

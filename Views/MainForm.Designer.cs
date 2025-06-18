@@ -40,6 +40,7 @@
             panel1 = new Panel();
             btnStaff = new Button();
             lblWelcom = new Label();
+            btnLogout = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -163,18 +164,31 @@
             // lblWelcom
             // 
             lblWelcom.AutoSize = true;
+            lblWelcom.BackColor = Color.Gray;
+            lblWelcom.Font = new Font("Segoe UI Black", 15.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             lblWelcom.Location = new Point(340, 57);
             lblWelcom.Name = "lblWelcom";
-            lblWelcom.Size = new Size(57, 15);
-            lblWelcom.TabIndex = 10;
+            lblWelcom.Size = new Size(106, 30);
+            lblWelcom.TabIndex = 12;
             lblWelcom.Text = "Welcome";
             lblWelcom.Click += label1_Click;
+            // 
+            // btnLogout
+            // 
+            btnLogout.Location = new Point(487, 317);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(75, 23);
+            btnLogout.TabIndex = 13;
+            btnLogout.Text = "Logout";
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnLogout);
             Controls.Add(lblWelcom);
             Controls.Add(panel1);
             Name = "MainForm";
@@ -199,5 +213,6 @@
         private Panel panel1;
         private Label lblWelcom;
         private Button btnStaff;
+        private Button btnLogout;
     }
 }

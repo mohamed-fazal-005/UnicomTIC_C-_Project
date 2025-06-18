@@ -95,6 +95,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(606, 351);
             panel1.TabIndex = 5;
+            panel1.Paint += panel1_Paint;
             // 
             // LoginForm
             // 

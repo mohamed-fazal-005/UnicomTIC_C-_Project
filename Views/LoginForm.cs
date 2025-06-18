@@ -34,12 +34,17 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             {
                 MessageBox.Show($"Login successful. Welcome {user.Username} ({user.Role})");
                 this.Hide();
-                new MainForm(user).Show(); 
+                new MainForm(user).Show();
             }
             else
             {
                 MessageBox.Show("Invalid username or password.");
             }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

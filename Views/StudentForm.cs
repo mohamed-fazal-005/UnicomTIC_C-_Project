@@ -26,6 +26,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             SetupGrid();
             LoadStudents();
         }
+
         private void SetupGrid()
         {
             dgvStudents.AllowUserToAddRows = false;
@@ -67,6 +68,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             {
                 dgvStudents.Rows.Add(s.StudentID, s.Name, s.Age, s.Address, s.CourseID);
             }
+
         }
 
         private void btnStudentAdd_Click(object sender, EventArgs e)
