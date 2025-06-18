@@ -38,13 +38,14 @@
             btnCourse = new Button();
             btnRoom = new Button();
             panel1 = new Panel();
+            btnStaff = new Button();
             lblWelcom = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // btnUser
             // 
-            btnUser.Location = new Point(47, 52);
+            btnUser.Location = new Point(47, 11);
             btnUser.Name = "btnUser";
             btnUser.Size = new Size(75, 23);
             btnUser.TabIndex = 0;
@@ -54,7 +55,7 @@
             // 
             // btnLecture
             // 
-            btnLecture.Location = new Point(47, 97);
+            btnLecture.Location = new Point(47, 52);
             btnLecture.Name = "btnLecture";
             btnLecture.Size = new Size(75, 23);
             btnLecture.TabIndex = 1;
@@ -64,7 +65,7 @@
             // 
             // btnStudent
             // 
-            btnStudent.Location = new Point(47, 138);
+            btnStudent.Location = new Point(47, 145);
             btnStudent.Name = "btnStudent";
             btnStudent.Size = new Size(75, 23);
             btnStudent.TabIndex = 2;
@@ -74,7 +75,7 @@
             // 
             // btnExam
             // 
-            btnExam.Location = new Point(47, 180);
+            btnExam.Location = new Point(47, 193);
             btnExam.Name = "btnExam";
             btnExam.Size = new Size(75, 23);
             btnExam.TabIndex = 3;
@@ -84,7 +85,7 @@
             // 
             // btnMark
             // 
-            btnMark.Location = new Point(47, 225);
+            btnMark.Location = new Point(47, 239);
             btnMark.Name = "btnMark";
             btnMark.Size = new Size(75, 23);
             btnMark.TabIndex = 4;
@@ -94,7 +95,7 @@
             // 
             // btnSubject
             // 
-            btnSubject.Location = new Point(47, 275);
+            btnSubject.Location = new Point(47, 286);
             btnSubject.Name = "btnSubject";
             btnSubject.Size = new Size(75, 23);
             btnSubject.TabIndex = 5;
@@ -104,7 +105,7 @@
             // 
             // btnTimetable
             // 
-            btnTimetable.Location = new Point(47, 317);
+            btnTimetable.Location = new Point(47, 327);
             btnTimetable.Name = "btnTimetable";
             btnTimetable.Size = new Size(75, 23);
             btnTimetable.TabIndex = 6;
@@ -114,7 +115,7 @@
             // 
             // btnCourse
             // 
-            btnCourse.Location = new Point(47, 361);
+            btnCourse.Location = new Point(47, 371);
             btnCourse.Name = "btnCourse";
             btnCourse.Size = new Size(75, 23);
             btnCourse.TabIndex = 7;
@@ -124,7 +125,7 @@
             // 
             // btnRoom
             // 
-            btnRoom.Location = new Point(47, 402);
+            btnRoom.Location = new Point(47, 414);
             btnRoom.Name = "btnRoom";
             btnRoom.Size = new Size(75, 23);
             btnRoom.TabIndex = 8;
@@ -134,6 +135,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(btnStaff);
             panel1.Controls.Add(btnRoom);
             panel1.Controls.Add(btnUser);
             panel1.Controls.Add(btnLecture);
@@ -147,6 +149,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(200, 450);
             panel1.TabIndex = 9;
+            // 
+            // btnStaff
+            // 
+            btnStaff.Location = new Point(47, 98);
+            btnStaff.Name = "btnStaff";
+            btnStaff.Size = new Size(75, 23);
+            btnStaff.TabIndex = 11;
+            btnStaff.Text = "Staff";
+            btnStaff.UseVisualStyleBackColor = true;
+            btnStaff.Click += btnStaff_Click;
             // 
             // lblWelcom
             // 
@@ -186,5 +198,6 @@
         private Button btnRoom;
         private Panel panel1;
         private Label lblWelcom;
+        private Button btnStaff;
     }
 }

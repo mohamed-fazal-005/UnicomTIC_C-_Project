@@ -81,6 +81,12 @@ namespace UTIC_WindowsForm_By_Fazal.Data
                     Qualification TEXT,
                     Email TEXT
                 );
+                CREATE TABLE IF NOT EXISTS Staff (
+                    StaffID INTEGER PRIMARY KEY AUTOINCREMENT,
+                    Name TEXT NOT NULL,
+                    Position TEXT,
+                    Email TEXT
+                );
             ";
                 using (var cmd = new SQLiteCommand(createTableQueries, conn))
                 {

@@ -63,6 +63,8 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             btnTimetable.Enabled = true;
             btnLecture.Enabled = true;
             btnUser.Enabled = true;
+            btnStaff.Enabled = true;
+            btnRoom.Enabled = true;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -113,6 +115,11 @@ namespace UTIC_WindowsForm_By_Fazal.Views
         private void btnRoom_Click(object sender, EventArgs e)
         {
             new RoomForm().ShowDialog();
+        }
+
+        private void btnStaff_Click(object sender, EventArgs e)
+        {
+            new StaffForm().ShowDialog();
         }
     }
 }
