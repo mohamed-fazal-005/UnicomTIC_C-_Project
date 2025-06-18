@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,6 +15,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 {
     public partial class UserForm : Form
     {
+        private int selectUserId = -1;
         public UserForm()
         {
             InitializeComponent();
@@ -37,6 +39,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             );
 
             LoadUsers();
+            ClearForm();
         }
 
         private void UserForm_Load(object sender, EventArgs e)
@@ -87,6 +90,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 
             UserController.UpdateUser(id, username, password, role);
             LoadUsers();
+            ClearForm();
         }
 
         private void btnDeleteUser_Click(object sender, EventArgs e)
@@ -96,6 +100,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             int id = Convert.ToInt32(dgvUsers.SelectedRows[0].Cells[0].Value);
             UserController.DeleteUser(id);
             LoadUsers();
+            ClearForm();
         }
 
         private void dgvUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -107,6 +112,17 @@ namespace UTIC_WindowsForm_By_Fazal.Views
                 txtPassword.Text = row.Cells[2].Value.ToString();
                 cmbRole.SelectedItem = row.Cells[3].Value.ToString();
             }
+        }
+        private void ClearForm() 
+        {
+            txtUsername.Clear();
+            txtPassword.Clear();
+            selectUserId = -1;
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

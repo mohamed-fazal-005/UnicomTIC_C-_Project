@@ -14,6 +14,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 {
     public partial class ExamForm : Form
     {
+        private int selectUserId = -1;
         public ExamForm()
         {
             InitializeComponent();
@@ -81,6 +82,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 
             ExamController.UpdateExam(examId, examName, subjectId);
             LoadExams();
+            ClearForm();
         }
 
         private void btnAddExam_Click(object sender, EventArgs e)
@@ -94,6 +96,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             var subject = (ComboBoxItem)cmbSubject.SelectedItem;
             ExamController.AddExam(txtExamName.Text.Trim(), int.Parse(subject.Value));
             LoadExams();
+            ClearForm();
         }
 
         private void btnDeleteExam_Click(object sender, EventArgs e)
@@ -103,6 +106,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             int examId = Convert.ToInt32(dgvExam.SelectedRows[0].Cells[0].Value);
             ExamController.DeleteExam(examId);
             LoadExams();
+            ClearForm();
         }
         private class ComboBoxItem
         {
@@ -118,8 +122,18 @@ namespace UTIC_WindowsForm_By_Fazal.Views
                 txtExamName.Text = dgvExam.SelectedRows[0].Cells[1].Value.ToString();
             }
         }
+        private void ClearForm()
+        {
+            txtExamName.Clear();
+            selectUserId = -1;
+        }
 
-        private void ExamForm_Load_1(object sender, EventArgs e)
+            private void ExamForm_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

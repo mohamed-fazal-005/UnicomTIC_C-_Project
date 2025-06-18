@@ -15,6 +15,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 {
     public partial class StudentForm : Form
     {
+        private int selectUserId = -1;
         public StudentForm()
         {
             InitializeComponent();
@@ -87,6 +88,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 
             StudentController.AddStudent(name, age, address, courseId);
             LoadStudents();
+            ClearForm();
         }
 
         private void btnStudentEdit_Click(object sender, EventArgs e)
@@ -101,6 +103,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 
             StudentController.UpdateStudent(id, name, age, address, courseId);
             LoadStudents();
+            ClearForm();
         }
 
         private void btnStudentDelete_Click(object sender, EventArgs e)
@@ -110,6 +113,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             int id = Convert.ToInt32(dgvStudents.SelectedRows[0].Cells[0].Value);
             StudentController.DeleteStudent(id);
             LoadStudents();
+            ClearForm();
         }
 
 
@@ -129,6 +133,14 @@ namespace UTIC_WindowsForm_By_Fazal.Views
                 txtAddress.Text = row.Cells[3].Value.ToString();
             }
         }
+        private void ClearForm()
+        {
+            txtStudentName.Clear();
+            txtAddress.Clear();
+            txtAge.Clear();
+            selectUserId = -1;
+        }
+
 
         private class ComboBoxItem
         {
@@ -139,6 +151,11 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             {
                 return Text;
             }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 

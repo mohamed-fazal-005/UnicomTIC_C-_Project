@@ -13,6 +13,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 {
     public partial class RoomForm : Form
     {
+        private int selectUserId = -1;
         public RoomForm()
         {
             InitializeComponent();
@@ -63,6 +64,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 
             RoomController.AddRoom(txtRoomName.Text.Trim(), cmbRoomType.SelectedItem.ToString());
             LoadRooms();
+            ClearForm();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -75,6 +77,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 
             RoomController.UpdateRoom(id, name, type);
             LoadRooms();
+            ClearForm();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -84,6 +87,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             int id = Convert.ToInt32(dgvRooms.SelectedRows[0].Cells[0].Value);
             RoomController.DeleteRoom(id);
             LoadRooms();
+            ClearForm();
         }
 
         private void dgvRooms_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -93,6 +97,11 @@ namespace UTIC_WindowsForm_By_Fazal.Views
                 txtRoomName.Text = dgvRooms.SelectedRows[0].Cells[1].Value.ToString();
                 cmbRoomType.SelectedItem = dgvRooms.SelectedRows[0].Cells[2].Value.ToString();
             }
+        }
+        private void ClearForm()
+        {
+            txtRoomName.Clear();
+            selectUserId = -1;
         }
     }
 }

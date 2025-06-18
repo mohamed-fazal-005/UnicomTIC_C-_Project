@@ -14,6 +14,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 {
     public partial class SubjectForm : Form
     {
+        private int selectUserId = -1;
         public SubjectForm()
         {
             InitializeComponent();
@@ -80,6 +81,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 
             SubjectController.AddSubject(subjectName, courseId);
             LoadSubjects();
+            ClearForm();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -92,6 +94,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 
             SubjectController.UpdateSubject(id, name, courseId);
             LoadSubjects();
+            ClearForm();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -101,6 +104,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             int id = Convert.ToInt32(dgvSubject.SelectedRows[0].Cells[0].Value);
             SubjectController.DeleteSubject(id);
             LoadSubjects();
+            ClearForm();
         }
 
         private void dgvSubject_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -110,12 +114,18 @@ namespace UTIC_WindowsForm_By_Fazal.Views
                 txtSubjectName.Text = dgvSubject.SelectedRows[0].Cells[1].Value.ToString();
             }
         }
+
         private class ComboBoxItem
         {
             public string Text { get; set; }
             public string Value { get; set; }
 
             public override string ToString() => Text;
+        }
+        private void ClearForm()
+        {
+            txtSubjectName.Clear();
+            selectUserId = -1;
         }
     }
 }

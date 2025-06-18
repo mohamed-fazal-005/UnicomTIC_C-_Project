@@ -14,6 +14,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 {
     public partial class TimetableForm : Form
     {
+        private int selectUserId = -1;
         public TimetableForm()
         {
             InitializeComponent();
@@ -106,6 +107,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 
             TimetableController.AddTimetable(int.Parse(subject.Value), txtTimeSlot.Text.Trim(), int.Parse(room.Value));
             LoadTimetables();
+            ClearForm();
         }
 
         private void btnEditTimetable_Click(object sender, EventArgs e)
@@ -119,6 +121,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 
             TimetableController.UpdateTimetable(id, int.Parse(subject.Value), timeSlot, int.Parse(room.Value));
             LoadTimetables();
+            ClearForm();
         }
 
         private void btnDeleteTimetable_Click(object sender, EventArgs e)
@@ -128,6 +131,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             int id = Convert.ToInt32(dgvTimetables.SelectedRows[0].Cells[0].Value);
             TimetableController.DeleteTimetable(id);
             LoadTimetables();
+            ClearForm();
         }
 
         private void dgvTimetables_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -136,6 +140,11 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             {
                 txtTimeSlot.Text = dgvTimetables.SelectedRows[0].Cells[2].Value.ToString();
             }
+        }
+        private void ClearForm()
+        {
+            txtTimeSlot.Clear();
+            selectUserId = -1;
         }
         private class ComboBoxItem
         {

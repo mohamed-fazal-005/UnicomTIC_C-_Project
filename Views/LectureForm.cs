@@ -14,6 +14,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 {
     public partial class LectureForm : Form
     {
+        private int selectUserId = -1;
         public LectureForm()
         {
             InitializeComponent();
@@ -68,6 +69,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             );
 
             LoadLectures();
+            ClearForm();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -85,6 +87,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             );
 
             LoadLectures();
+            ClearForm();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -94,6 +97,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             int id = Convert.ToInt32(dgvLecture.SelectedRows[0].Cells[0].Value);
             LectureController.DeleteLecture(id);
             LoadLectures();
+            ClearForm();
         }
 
         private void dgvLecture_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -106,6 +110,14 @@ namespace UTIC_WindowsForm_By_Fazal.Views
                 txtQualification.Text = row.Cells[3].Value.ToString();
                 txtEmail.Text = row.Cells[4].Value.ToString();
             }
+        }
+        private void ClearForm()
+        {
+            txtLectureName.Clear();
+            txtSubject.Clear();
+            txtQualification.Clear();
+            txtEmail.Clear();
+            selectUserId = -1;
         }
     }
 }

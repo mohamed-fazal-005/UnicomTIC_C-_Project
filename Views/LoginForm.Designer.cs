@@ -103,12 +103,12 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.WhiteSmoke;
-            label1.Font = new Font("Cambria", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(148, 47);
+            label1.Font = new Font("Cambria", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(89, 27);
             label1.Name = "label1";
-            label1.Size = new Size(212, 15);
+            label1.Size = new Size(325, 25);
             label1.TabIndex = 5;
-            label1.Text = "Please Enter Username, Password";
+            label1.Text = "UnicomTIC Management System";
             // 
             // LoginForm
             // 

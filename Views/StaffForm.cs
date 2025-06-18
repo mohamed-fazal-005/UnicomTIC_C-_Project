@@ -14,6 +14,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 {
     public partial class StaffForm : Form
     {
+        private int selectUserId = -1;
         public StaffForm()
         {
             InitializeComponent();
@@ -65,6 +66,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             );
 
             LoadStaff();
+            ClearForm();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -81,6 +83,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             );
 
             LoadStaff();
+            ClearForm();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -90,6 +93,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             int id = Convert.ToInt32(dgvStaff.SelectedRows[0].Cells[0].Value);
             StaffController.DeleteStaff(id);
             LoadStaff();
+            ClearForm();
         }
 
         private void dgvStaff_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -101,6 +105,13 @@ namespace UTIC_WindowsForm_By_Fazal.Views
                 txtPosition.Text = row.Cells[2].Value.ToString();
                 txtEmail.Text = row.Cells[3].Value.ToString();
             }
+        }
+        private void ClearForm()
+        {
+            txtStaffName.Clear();
+            txtPosition.Clear();
+            txtEmail.Clear();
+            selectUserId = -1;
         }
     }
 }

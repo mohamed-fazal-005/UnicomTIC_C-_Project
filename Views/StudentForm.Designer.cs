@@ -170,6 +170,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(659, 386);
             panel1.TabIndex = 12;
+            panel1.Paint += panel1_Paint;
             // 
             // label1
             // 

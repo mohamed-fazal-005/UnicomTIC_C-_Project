@@ -13,6 +13,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 {
     public partial class CourseForm : Form
     {
+        private int selectUserId = -1;
         public CourseForm()
         {
             InitializeComponent();
@@ -55,6 +56,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 
             CourseController.AddCourse(txtCourseName.Text.Trim());
             LoadCourses();
+            ClearForm();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -66,6 +68,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 
             CourseController.UpdateCourse(id, name);
             LoadCourses();
+            ClearForm();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -75,6 +78,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             int id = Convert.ToInt32(dgvCourse.SelectedRows[0].Cells[0].Value);
             CourseController.DeleteCourse(id);
             LoadCourses();
+            ClearForm();
         }
 
         private void dgvCourse_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -84,6 +88,15 @@ namespace UTIC_WindowsForm_By_Fazal.Views
                 txtCourseName.Text = dgvCourse.SelectedRows[0].Cells[1].Value.ToString();
             }
         }
-        
+        private void ClearForm()
+        {
+            txtCourseName.Clear();
+            selectUserId = -1;
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

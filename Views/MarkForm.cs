@@ -14,6 +14,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 {
     public partial class MarkForm : Form
     {
+        private int selectUserId = -1;
         public MarkForm()
         {
             InitializeComponent();
@@ -103,6 +104,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 
             MarkController.AddMark(int.Parse(student.Value), int.Parse(exam.Value), score);
             LoadMarks();
+            ClearForm();
         }
 
         private void btnEditMark_Click(object sender, EventArgs e)
@@ -116,6 +118,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 
             MarkController.UpdateMark(markId, int.Parse(student.Value), int.Parse(exam.Value), score);
             LoadMarks();
+            ClearForm();
         }
 
         private void btnDeleteMark_Click(object sender, EventArgs e)
@@ -125,6 +128,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             int markId = Convert.ToInt32(dgvMark.SelectedRows[0].Cells[0].Value);
             MarkController.DeleteMark(markId);
             LoadMarks();
+            ClearForm();
         }
 
         private void dgvMark_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -143,6 +147,11 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             {
                 return Text;
             }
+        }
+        private void ClearForm()
+        {
+            txtScore.Clear();
+            selectUserId = -1;
         }
 
         private void lblScore_Click(object sender, EventArgs e)
