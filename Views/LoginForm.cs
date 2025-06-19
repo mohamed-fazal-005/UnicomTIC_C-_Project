@@ -32,7 +32,6 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 
             if (user != null)
             {
-                MessageBox.Show($"Login successful. Welcome {user.Username} ({user.Role})");
                 this.Hide();
                 new MainForm(user).Show();
             }

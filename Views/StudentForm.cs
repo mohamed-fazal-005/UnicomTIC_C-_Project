@@ -74,15 +74,22 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 
         private void btnStudentAdd_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtStudentName.Text) || string.IsNullOrWhiteSpace(txtAge.Text) ||
-                string.IsNullOrWhiteSpace(txtAddress.Text) || cmbCourse.SelectedItem == null)
+            if (string.IsNullOrWhiteSpace(txtStudentName.Text) ||
+                string.IsNullOrWhiteSpace(txtAge.Text) ||
+                string.IsNullOrWhiteSpace(txtAddress.Text) ||
+                cmbCourse.SelectedItem == null)
             {
                 MessageBox.Show("All fields are required.");
                 return;
             }
 
+            if (!int.TryParse(txtAge.Text.Trim(), out int age))
+            {
+                MessageBox.Show("Age must be a number.");
+                return;
+            }
+
             string name = txtStudentName.Text.Trim();
-            int age = int.Parse(txtAge.Text.Trim());
             string address = txtAddress.Text.Trim();
             int courseId = int.Parse(((ComboBoxItem)cmbCourse.SelectedItem).Value);
 
@@ -93,14 +100,32 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 
         private void btnStudentEdit_Click(object sender, EventArgs e)
         {
-            if (dgvStudents.SelectedRows.Count == 0) return;
+            if (dgvStudents.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Select a student to edit.");
+                return;
+            }
 
+            if (string.IsNullOrWhiteSpace(txtStudentName.Text) ||
+                string.IsNullOrWhiteSpace(txtAge.Text) ||
+                string.IsNullOrWhiteSpace(txtAddress.Text) ||
+                cmbCourse.SelectedItem == null)
+            {
+                MessageBox.Show("All fields are required.");
+                return;
+            }
+
+            if (!int.TryParse(txtAge.Text.Trim(), out int age))
+            {
+                MessageBox.Show("Age must be a number.");
+                return;
+            }
             int id = Convert.ToInt32(dgvStudents.SelectedRows[0].Cells[0].Value);
             string name = txtStudentName.Text.Trim();
-            int age = int.Parse(txtAge.Text.Trim());
             string address = txtAddress.Text.Trim();
             int courseId = int.Parse(((ComboBoxItem)cmbCourse.SelectedItem).Value);
 
+            // ✅ Call controller
             StudentController.UpdateStudent(id, name, age, address, courseId);
             LoadStudents();
             ClearForm();

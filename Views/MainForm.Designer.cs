@@ -46,7 +46,7 @@
             // 
             // btnUser
             // 
-            btnUser.Location = new Point(47, 11);
+            btnUser.Location = new Point(47, 23);
             btnUser.Name = "btnUser";
             btnUser.Size = new Size(75, 23);
             btnUser.TabIndex = 0;
@@ -56,7 +56,7 @@
             // 
             // btnLecture
             // 
-            btnLecture.Location = new Point(47, 52);
+            btnLecture.Location = new Point(47, 153);
             btnLecture.Name = "btnLecture";
             btnLecture.Size = new Size(75, 23);
             btnLecture.TabIndex = 1;
@@ -66,7 +66,7 @@
             // 
             // btnStudent
             // 
-            btnStudent.Location = new Point(47, 145);
+            btnStudent.Location = new Point(47, 241);
             btnStudent.Name = "btnStudent";
             btnStudent.Size = new Size(75, 23);
             btnStudent.TabIndex = 2;
@@ -76,7 +76,7 @@
             // 
             // btnExam
             // 
-            btnExam.Location = new Point(47, 193);
+            btnExam.Location = new Point(47, 371);
             btnExam.Name = "btnExam";
             btnExam.Size = new Size(75, 23);
             btnExam.TabIndex = 3;
@@ -86,7 +86,7 @@
             // 
             // btnMark
             // 
-            btnMark.Location = new Point(47, 239);
+            btnMark.Location = new Point(47, 414);
             btnMark.Name = "btnMark";
             btnMark.Size = new Size(75, 23);
             btnMark.TabIndex = 4;
@@ -96,7 +96,7 @@
             // 
             // btnSubject
             // 
-            btnSubject.Location = new Point(47, 286);
+            btnSubject.Location = new Point(47, 109);
             btnSubject.Name = "btnSubject";
             btnSubject.Size = new Size(75, 23);
             btnSubject.TabIndex = 5;
@@ -106,7 +106,7 @@
             // 
             // btnTimetable
             // 
-            btnTimetable.Location = new Point(47, 327);
+            btnTimetable.Location = new Point(47, 329);
             btnTimetable.Name = "btnTimetable";
             btnTimetable.Size = new Size(75, 23);
             btnTimetable.TabIndex = 6;
@@ -116,7 +116,7 @@
             // 
             // btnCourse
             // 
-            btnCourse.Location = new Point(47, 371);
+            btnCourse.Location = new Point(47, 65);
             btnCourse.Name = "btnCourse";
             btnCourse.Size = new Size(75, 23);
             btnCourse.TabIndex = 7;
@@ -126,7 +126,7 @@
             // 
             // btnRoom
             // 
-            btnRoom.Location = new Point(47, 414);
+            btnRoom.Location = new Point(47, 287);
             btnRoom.Name = "btnRoom";
             btnRoom.Size = new Size(75, 23);
             btnRoom.TabIndex = 8;
@@ -137,16 +137,16 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
-            panel1.Controls.Add(btnStaff);
-            panel1.Controls.Add(btnRoom);
-            panel1.Controls.Add(btnUser);
             panel1.Controls.Add(btnLecture);
+            panel1.Controls.Add(btnStaff);
             panel1.Controls.Add(btnStudent);
-            panel1.Controls.Add(btnExam);
-            panel1.Controls.Add(btnMark);
             panel1.Controls.Add(btnSubject);
-            panel1.Controls.Add(btnTimetable);
+            panel1.Controls.Add(btnMark);
+            panel1.Controls.Add(btnUser);
             panel1.Controls.Add(btnCourse);
+            panel1.Controls.Add(btnExam);
+            panel1.Controls.Add(btnRoom);
+            panel1.Controls.Add(btnTimetable);
             panel1.Location = new Point(1, 1);
             panel1.Name = "panel1";
             panel1.Size = new Size(200, 450);
@@ -154,7 +154,7 @@
             // 
             // btnStaff
             // 
-            btnStaff.Location = new Point(47, 98);
+            btnStaff.Location = new Point(47, 196);
             btnStaff.Name = "btnStaff";
             btnStaff.Size = new Size(75, 23);
             btnStaff.TabIndex = 11;

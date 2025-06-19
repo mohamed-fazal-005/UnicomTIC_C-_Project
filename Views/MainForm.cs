@@ -34,22 +34,21 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             }
             else if (loggedInUser.Role == "Staff")
             {
-                btnUser.Enabled = false;
-                btnLecture.Enabled = false;
+                btnUser.Visible = false;
+                btnLecture.Visible = false;
             }
             else if (loggedInUser.Role == "Lecturer")
             {
-                btnUser.Enabled = false;
-                btnCourse.Enabled = false;
-                btnStudent.Enabled = false;
+                btnUser.Visible = false;
+                btnCourse.Visible = false;
+                btnStudent.Visible = false;
             }
             else if (loggedInUser.Role == "Student")
             {
-                btnUser.Enabled = false;
-                btnCourse.Enabled = false;
-                btnStudent.Enabled = false;
-                btnLecture.Enabled = false;
-                btnMark.Enabled = false;
+                btnUser.Visible = false;
+                btnStudent.Visible = false;
+                btnLecture.Visible = false;
+                btnMark.Visible = false;
 
             }
         }

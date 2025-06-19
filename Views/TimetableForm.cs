@@ -19,6 +19,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
         {
             InitializeComponent();
             this.Load += TimetableForm_Load;
+            this.txtTimeSlot.Leave += txtTimeSlot_Leave;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -146,11 +147,28 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             txtTimeSlot.Clear();
             selectUserId = -1;
         }
+        private void txtTimeSlot_Leave(object sender, EventArgs e)
+        {
+            string input = txtTimeSlot.Text.Trim();
+
+            if (System.Text.RegularExpressions.Regex.IsMatch(input, @"^\d{1,2}$"))
+            {
+                txtTimeSlot.Text = input + ".00";
+                return;
+            }
+
+            if (!System.Text.RegularExpressions.Regex.IsMatch(input, @"^\d{1,2}\.\d{2}$"))
+            {
+                MessageBox.Show("TimeSlot must be a Number", "Invalid Format", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtTimeSlot.Focus();
+            }
+        }
+
+
         private class ComboBoxItem
         {
             public string Text { get; set; }
             public string Value { get; set; }
-
             public override string ToString()
             {
                 return Text;

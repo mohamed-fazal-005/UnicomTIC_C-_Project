@@ -97,10 +97,15 @@ namespace UTIC_WindowsForm_By_Fazal.Views
                 MessageBox.Show("All fields required.");
                 return;
             }
+            if (!int.TryParse(txtScore.Text.Trim(), out int score))
+            {
+                MessageBox.Show("Score must be a valid number.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
 
             var student = (ComboBoxItem)cmbStudent.SelectedItem;
             var exam = (ComboBoxItem)cmbExam.SelectedItem;
-            int score = int.Parse(txtScore.Text);
 
             MarkController.AddMark(int.Parse(student.Value), int.Parse(exam.Value), score);
             LoadMarks();
@@ -111,10 +116,15 @@ namespace UTIC_WindowsForm_By_Fazal.Views
         {
             if (dgvMark.SelectedRows.Count == 0) return;
 
+            if (!int.TryParse(txtScore.Text.Trim(), out int score))
+            {
+                MessageBox.Show("Mark must be a number.");
+                return;
+            }
+
             int markId = Convert.ToInt32(dgvMark.SelectedRows[0].Cells[0].Value);
             var student = (ComboBoxItem)cmbStudent.SelectedItem;
             var exam = (ComboBoxItem)cmbExam.SelectedItem;
-            int score = int.Parse(txtScore.Text);
 
             MarkController.UpdateMark(markId, int.Parse(student.Value), int.Parse(exam.Value), score);
             LoadMarks();
