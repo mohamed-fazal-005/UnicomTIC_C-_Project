@@ -33,7 +33,6 @@
             lblQualification = new Label();
             lblEmail = new Label();
             txtLectureName = new TextBox();
-            txtSubject = new TextBox();
             txtQualification = new TextBox();
             txtEmail = new TextBox();
             btnAdd = new Button();
@@ -41,6 +40,7 @@
             btnDelete = new Button();
             dgvLecture = new DataGridView();
             panel1 = new Panel();
+            cmbSubject = new ComboBox();
             label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvLecture).BeginInit();
             panel1.SuspendLayout();
@@ -88,13 +88,6 @@
             txtLectureName.Name = "txtLectureName";
             txtLectureName.Size = new Size(172, 23);
             txtLectureName.TabIndex = 4;
-            // 
-            // txtSubject
-            // 
-            txtSubject.Location = new Point(247, 87);
-            txtSubject.Name = "txtSubject";
-            txtSubject.Size = new Size(172, 23);
-            txtSubject.TabIndex = 5;
             // 
             // txtQualification
             // 
@@ -152,6 +145,7 @@
             // panel1
             // 
             panel1.BackColor = Color.Silver;
+            panel1.Controls.Add(cmbSubject);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(lblLectureName);
             panel1.Controls.Add(btnDelete);
@@ -160,7 +154,6 @@
             panel1.Controls.Add(txtLectureName);
             panel1.Controls.Add(btnAdd);
             panel1.Controls.Add(lblSubject);
-            panel1.Controls.Add(txtSubject);
             panel1.Controls.Add(lblQualification);
             panel1.Controls.Add(txtEmail);
             panel1.Controls.Add(txtQualification);
@@ -169,6 +162,14 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(662, 388);
             panel1.TabIndex = 12;
+            // 
+            // cmbSubject
+            // 
+            cmbSubject.FormattingEnabled = true;
+            cmbSubject.Location = new Point(247, 87);
+            cmbSubject.Name = "cmbSubject";
+            cmbSubject.Size = new Size(98, 23);
+            cmbSubject.TabIndex = 13;
             // 
             // label1
             // 
@@ -203,7 +204,6 @@
         private Label lblQualification;
         private Label lblEmail;
         private TextBox txtLectureName;
-        private TextBox txtSubject;
         private TextBox txtQualification;
         private TextBox txtEmail;
         private Button btnAdd;
@@ -212,5 +212,6 @@
         private DataGridView dgvLecture;
         private Panel panel1;
         private Label label1;
+        private ComboBox cmbSubject;
     }
 }

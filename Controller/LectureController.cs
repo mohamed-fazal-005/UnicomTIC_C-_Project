@@ -16,7 +16,10 @@ namespace UTIC_WindowsForm_By_Fazal.Controller
 
             using (var cmd = DataCon.GetConnection().CreateCommand())
             {
-                cmd.CommandText = "SELECT * FROM Lectures";
+                cmd.CommandText = @"
+                    SELECT l.LectureID, l.Name, l.SubjectID, l.Qualification, l.Email
+                    FROM Lectures l";
+
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
@@ -25,7 +28,7 @@ namespace UTIC_WindowsForm_By_Fazal.Controller
                         {
                             LectureID = Convert.ToInt32(reader["LectureID"]),
                             Name = reader["Name"].ToString(),
-                            Subject = reader["Subject"].ToString(),
+                            SubjectID = Convert.ToInt32(reader["SubjectID"]),
                             Qualification = reader["Qualification"].ToString(),
                             Email = reader["Email"].ToString()
                         });
@@ -33,29 +36,30 @@ namespace UTIC_WindowsForm_By_Fazal.Controller
                 }
             }
 
+
             return lectures;
         }
 
-        public static void AddLecture(string name, string subject, string qualification, string email)
+        public static void AddLecture(string name, int subjectId, string qualification, string email)
         {
             using (var cmd = DataCon.GetConnection().CreateCommand())
             {
-                cmd.CommandText = "INSERT INTO Lectures (Name, Subject, Qualification, Email) VALUES (@n, @s, @q, @e)";
+                cmd.CommandText = "INSERT INTO Lectures (Name, SubjectID, Qualification, Email) VALUES (@n, @s, @q, @e)";
                 cmd.Parameters.AddWithValue("@n", name);
-                cmd.Parameters.AddWithValue("@s", subject);
+                cmd.Parameters.AddWithValue("@s", subjectId);
                 cmd.Parameters.AddWithValue("@q", qualification);
                 cmd.Parameters.AddWithValue("@e", email);
                 cmd.ExecuteNonQuery();
             }
         }
 
-        public static void UpdateLecture(int id, string name, string subject, string qualification, string email)
+        public static void UpdateLecture(int id, string name, int subjectId, string qualification, string email)
         {
             using (var cmd = DataCon.GetConnection().CreateCommand())
             {
-                cmd.CommandText = "UPDATE Lectures SET Name = @n, Subject = @s, Qualification = @q, Email = @e WHERE LectureID = @id";
+                cmd.CommandText = "UPDATE Lectures SET Name = @n, SubjectID = @s, Qualification = @q, Email = @e WHERE LectureID = @id";
                 cmd.Parameters.AddWithValue("@n", name);
-                cmd.Parameters.AddWithValue("@s", subject);
+                cmd.Parameters.AddWithValue("@s", subjectId);
                 cmd.Parameters.AddWithValue("@q", qualification);
                 cmd.Parameters.AddWithValue("@e", email);
                 cmd.Parameters.AddWithValue("@id", id);

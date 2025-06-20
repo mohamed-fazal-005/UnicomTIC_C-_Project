@@ -77,9 +77,10 @@ namespace UTIC_WindowsForm_By_Fazal.Data
                 CREATE TABLE IF NOT EXISTS Lectures (
                     LectureID INTEGER PRIMARY KEY AUTOINCREMENT,
                     Name TEXT NOT NULL,
-                    Subject TEXT,
+                    SubjectID INTEGER NOT NULL,
                     Qualification TEXT,
-                    Email TEXT
+                    Email TEXT,
+                    FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID)
                 );
                 CREATE TABLE IF NOT EXISTS Staff (
                     StaffID INTEGER PRIMARY KEY AUTOINCREMENT,

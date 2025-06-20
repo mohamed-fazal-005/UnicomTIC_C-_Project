@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using UTIC_WindowsForm_By_Fazal.Controller;
+using UTIC_WindowsForm_By_Fazal.Data;
 
 namespace UTIC_WindowsForm_By_Fazal.Views
 {
@@ -24,6 +25,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
         private void LectureForm_Load(object sender, EventArgs e)
         {
             SetupGrid();
+            LoadSubjects();
             LoadLectures();
         }
         private void SetupGrid()
@@ -34,9 +36,29 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             dgvLecture.Columns.Clear();
             dgvLecture.Columns.Add("LectureID", "ID");
             dgvLecture.Columns.Add("Name", "Name");
-            dgvLecture.Columns.Add("Subject", "Subject");
+            dgvLecture.Columns.Add("SubjectID", "Subject");
             dgvLecture.Columns.Add("Qualification", "Qualification");
             dgvLecture.Columns.Add("Email", "Email");
+        }
+        private void LoadSubjects()
+        {
+            cmbSubject.Items.Clear();
+
+            using (var cmd = DataCon.GetConnection().CreateCommand())
+            {
+                cmd.CommandText = "SELECT SubjectID, SubjectName FROM Subjects";
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        cmbSubject.Items.Add(new ComboBoxItem
+                        {
+                            Text = reader["SubjectName"].ToString(),
+                            Value = reader["SubjectID"].ToString()
+                        });
+                    }
+                }
+            }
         }
 
         private void LoadLectures()
@@ -46,24 +68,26 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 
             foreach (var lec in lectures)
             {
-                dgvLecture.Rows.Add(lec.LectureID, lec.Name, lec.Subject, lec.Qualification, lec.Email);
+                dgvLecture.Rows.Add(lec.LectureID, lec.Name, lec.SubjectID, lec.Qualification, lec.Email);
             }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtLectureName.Text) ||
-                string.IsNullOrWhiteSpace(txtSubject.Text) ||
-                string.IsNullOrWhiteSpace(txtQualification.Text) ||
-                string.IsNullOrWhiteSpace(txtEmail.Text))
+                 string.IsNullOrWhiteSpace(txtQualification.Text) ||
+                 string.IsNullOrWhiteSpace(txtEmail.Text) ||
+                 cmbSubject.SelectedItem == null)
             {
                 MessageBox.Show("All fields are required.");
                 return;
             }
 
+            int subjectId = int.Parse(((ComboBoxItem)cmbSubject.SelectedItem).Value);
+
             LectureController.AddLecture(
                 txtLectureName.Text.Trim(),
-                txtSubject.Text.Trim(),
+                subjectId,
                 txtQualification.Text.Trim(),
                 txtEmail.Text.Trim()
             );
@@ -77,11 +101,12 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             if (dgvLecture.SelectedRows.Count == 0) return;
 
             int id = Convert.ToInt32(dgvLecture.SelectedRows[0].Cells[0].Value);
+            int subjectId = int.Parse(((ComboBoxItem)cmbSubject.SelectedItem).Value);
 
             LectureController.UpdateLecture(
                 id,
                 txtLectureName.Text.Trim(),
-                txtSubject.Text.Trim(),
+                subjectId,
                 txtQualification.Text.Trim(),
                 txtEmail.Text.Trim()
             );
@@ -106,7 +131,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             {
                 var row = dgvLecture.SelectedRows[0];
                 txtLectureName.Text = row.Cells[1].Value.ToString();
-                txtSubject.Text = row.Cells[2].Value.ToString();
+                cmbSubject.Text = row.Cells[2].Value.ToString();
                 txtQualification.Text = row.Cells[3].Value.ToString();
                 txtEmail.Text = row.Cells[4].Value.ToString();
             }
@@ -114,10 +139,16 @@ namespace UTIC_WindowsForm_By_Fazal.Views
         private void ClearForm()
         {
             txtLectureName.Clear();
-            txtSubject.Clear();
+            cmbSubject.SelectedIndex = -1;
             txtQualification.Clear();
             txtEmail.Clear();
             selectUserId = -1;
+        }
+        private class ComboBoxItem
+        {
+            public string Text { get; set; }
+            public string Value { get; set; }
+            public override string ToString() => Text;
         }
     }
 }

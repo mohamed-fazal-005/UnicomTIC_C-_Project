@@ -10,7 +10,7 @@ namespace UTIC_WindowsForm_By_Fazal.Model
     {
         public int LectureID { get; set; }
         public string Name { get; set; }
-        public string Subject { get; set; }
+        public int SubjectID { get; set; }
         public string Qualification { get; set; }
         public string Email { get; set; }
     }
