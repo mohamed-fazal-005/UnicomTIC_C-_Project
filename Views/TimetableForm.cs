@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UTIC_WindowsForm_By_Fazal.Controller;
 using UTIC_WindowsForm_By_Fazal.Data;
+using UTIC_WindowsForm_By_Fazal.Model;
 
 namespace UTIC_WindowsForm_By_Fazal.Views
 {
@@ -20,6 +21,12 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             InitializeComponent();
             this.Load += TimetableForm_Load;
             this.txtTimeSlot.Leave += txtTimeSlot_Leave;
+            if (Helper.UserType != "Admin" && Helper.UserType != "Staff" )
+            {
+                btnAddTimetable.Enabled = false;
+                btnEditTimetable.Enabled = false;
+                btnDeleteTimetable.Enabled = false;
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

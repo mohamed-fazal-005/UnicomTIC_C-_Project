@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UTIC_WindowsForm_By_Fazal.Controller;
 using UTIC_WindowsForm_By_Fazal.Data;
+using UTIC_WindowsForm_By_Fazal.Model;
 
 namespace UTIC_WindowsForm_By_Fazal.Views
 {
@@ -19,6 +20,12 @@ namespace UTIC_WindowsForm_By_Fazal.Views
         {
             InitializeComponent();
             this.Load += SubjectForm_Load;
+            if (Helper.UserType != "Admin" && Helper.UserType != "Staff")
+            {
+                btnAdd.Enabled = false;
+                btnEdit.Enabled = false;
+                btnDelete.Enabled = false;
+            }
         }
 
         private void SubjectForm_Load(object sender, EventArgs e)

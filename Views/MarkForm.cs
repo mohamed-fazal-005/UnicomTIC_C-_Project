@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UTIC_WindowsForm_By_Fazal.Controller;
 using UTIC_WindowsForm_By_Fazal.Data;
+using UTIC_WindowsForm_By_Fazal.Model;
 
 namespace UTIC_WindowsForm_By_Fazal.Views
 {
@@ -19,6 +20,12 @@ namespace UTIC_WindowsForm_By_Fazal.Views
         {
             InitializeComponent();
             this.Load += MarkForm_Load;
+            if (Helper.UserType != "Admin" && Helper.UserType != "Staff")
+            {
+                btnAddMark.Enabled = false;
+                btnEditMark.Enabled = false;
+                btnDeleteMark.Enabled = false;
+            }
         }
 
         private void MarkForm_Load(object sender, EventArgs e)

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UTIC_WindowsForm_By_Fazal.Controller;
 using UTIC_WindowsForm_By_Fazal.Data;
+using UTIC_WindowsForm_By_Fazal.Model;
 
 namespace UTIC_WindowsForm_By_Fazal.Views
 {
@@ -19,6 +20,12 @@ namespace UTIC_WindowsForm_By_Fazal.Views
         {
             InitializeComponent();
             this.Load += ExamForm_Load;
+            if (Helper.UserType != "Admin" && Helper.UserType != "Staff")
+            {
+                btnAddExam.Enabled = false;
+                btnEditExam.Enabled = false;
+                btnDeleteExam.Enabled = false;
+            }
         }
 
         private void ExamForm_Load(object sender, EventArgs e)

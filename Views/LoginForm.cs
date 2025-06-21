@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UTIC_WindowsForm_By_Fazal.Controller;
+using UTIC_WindowsForm_By_Fazal.Model;
 
 namespace UTIC_WindowsForm_By_Fazal.Views
 {
@@ -29,6 +30,7 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             string password = txtPassword.Text.Trim();
 
             var user = await LoginController.LoginUserAsync(username, password);
+            Helper.UserType = user.Role;
 
             if (user != null)
             {

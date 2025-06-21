@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using UTIC_WindowsForm_By_Fazal.Controller;
 using UTIC_WindowsForm_By_Fazal.Data;
+using UTIC_WindowsForm_By_Fazal.Model;
 
 namespace UTIC_WindowsForm_By_Fazal.Views
 {
@@ -20,6 +21,12 @@ namespace UTIC_WindowsForm_By_Fazal.Views
         {
             InitializeComponent();
             this.Load += StudentForm_Load;
+            if (Helper.UserType != "Admin")
+            {
+                btnStudentAdd.Enabled = false;
+                btnStudentEdit.Enabled = false;
+                btnStudentDelete.Enabled = false;
+            }
         }
         private void StudentForm_Load(object sender, EventArgs e)
         {
