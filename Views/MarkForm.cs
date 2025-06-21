@@ -20,11 +20,17 @@ namespace UTIC_WindowsForm_By_Fazal.Views
         {
             InitializeComponent();
             this.Load += MarkForm_Load;
-            if (Helper.UserType != "Admin" && Helper.UserType != "Staff")
+            if (Helper.UserType != "Admin")
             {
-                btnAddMark.Enabled = false;
-                btnEditMark.Enabled = false;
-                btnDeleteMark.Enabled = false;
+                btnAddMark.Visible = false;
+                btnEditMark.Visible = false;
+                btnDeleteMark.Visible = false;
+                lblStudent.Visible = false;
+                lblExam.Visible = false;
+                lblScore.Visible = false;
+                cmbStudent.Visible = false;
+                cmbExam.Visible = false;
+                txtScore.Visible = false;
             }
         }
 

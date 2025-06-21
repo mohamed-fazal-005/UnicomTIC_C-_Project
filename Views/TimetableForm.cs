@@ -23,9 +23,15 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             this.txtTimeSlot.Leave += txtTimeSlot_Leave;
             if (Helper.UserType != "Admin" && Helper.UserType != "Staff" )
             {
-                btnAddTimetable.Enabled = false;
-                btnEditTimetable.Enabled = false;
-                btnDeleteTimetable.Enabled = false;
+                btnAddTimetable.Visible = false;
+                btnEditTimetable.Visible = false;
+                btnDeleteTimetable.Visible = false;
+                lblSubject.Visible = false;
+                lblTimeSlot.Visible = false;
+                cmbSubject.Visible = false;
+                cmbRooms.Visible = false;
+                txtTimeSlot.Visible = false;
+                lblRoom.Visible = false;
             }
         }
 

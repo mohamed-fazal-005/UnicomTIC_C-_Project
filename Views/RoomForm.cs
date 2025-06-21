@@ -21,9 +21,13 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             this.Load += RoomForm_Load;
             if (Helper.UserType != "Admin" && Helper.UserType != "Staff")
             {
-                btnAdd.Enabled = false;
-                btnEdit.Enabled = false;
-                btnDelete.Enabled = false;
+                btnAdd.Visible = false;
+                btnEdit.Visible = false;
+                btnDelete.Visible = false;
+                lblRoomName.Visible = false;
+                txtRoomName.Visible = false;
+                cmbRoomType.Visible = false;
+                lblRoomTyoe.Visible = false;
             }
         }
 

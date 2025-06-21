@@ -22,9 +22,13 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             this.Load += SubjectForm_Load;
             if (Helper.UserType != "Admin" && Helper.UserType != "Staff")
             {
-                btnAdd.Enabled = false;
-                btnEdit.Enabled = false;
-                btnDelete.Enabled = false;
+                btnAdd.Visible = false;
+                btnEdit.Visible = false;
+                btnDelete.Visible = false;
+                lblSubject.Visible = false;
+                lblCourse.Visible = false;
+                txtSubjectName.Visible = false;
+                cmbCourse.Visible = false;
             }
         }
 

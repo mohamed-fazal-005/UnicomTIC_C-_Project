@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,11 +22,19 @@ namespace UTIC_WindowsForm_By_Fazal.Views
         {
             InitializeComponent();
             this.Load += LectureForm_Load;
-            if (Helper.UserType != "Admin")
+            if (Helper.UserType != "Admin" && Helper.UserType != "Lecture")
             {
-                btnAdd.Enabled = false;
-                btnEdit.Enabled = false;
-                btnDelete.Enabled = false;
+                btnAdd.Visible = false;
+                btnEdit.Visible = false;
+                btnDelete.Visible = false;
+                lblLectureName.Visible = false;
+                lblSubject.Visible = false;
+                lblQualification.Visible = false;
+                lblEmail.Visible = false;
+                txtLectureName.Visible=false;
+                txtQualification.Visible=false;
+                txtEmail.Visible=false;
+                cmbSubject.Visible=false;
             }
         }
 

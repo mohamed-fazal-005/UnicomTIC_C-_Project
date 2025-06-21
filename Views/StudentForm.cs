@@ -23,11 +23,23 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             this.Load += StudentForm_Load;
             if (Helper.UserType != "Admin")
             {
-                btnStudentAdd.Enabled = false;
-                btnStudentEdit.Enabled = false;
-                btnStudentDelete.Enabled = false;
-            }
-        }
+                btnStudentAdd.Visible = false;
+                btnStudentEdit.Visible = false;
+                btnStudentDelete.Visible = false;
+                lblSrudentName.Visible = false;
+                lblAddress.Visible = false;
+                lblAge.Visible = false;
+                lblCourse.Visible = false;
+                cmbCourse.Visible = false;
+                txtStudentName.Visible = false;
+                txtAddress.Visible = false;
+                txtAge.Visible = false;
+
+
+
+
+    }
+}
         private void StudentForm_Load(object sender, EventArgs e)
         {
             LoadCourses();

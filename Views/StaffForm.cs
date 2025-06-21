@@ -22,9 +22,16 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             this.Load += StaffForm_Load;
             if (Helper.UserType != "Admin")
             {
-                btnAdd.Enabled = false;
-                btnEdit.Enabled = false;
-                btnDelete.Enabled = false;
+                btnAdd.Visible = false;
+                btnEdit.Visible = false;
+                btnDelete.Visible = false;
+                lblStaffName.Visible = false;
+                lblPosition.Visible = false;
+                lblEmail.Visible = false;
+                txtStaffName.Visible = false;
+                txtPosition.Visible = false;
+                txtEmail.Visible = false;
+
             }
         }
 

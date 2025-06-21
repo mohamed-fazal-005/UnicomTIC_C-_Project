@@ -22,9 +22,14 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             this.Load += ExamForm_Load;
             if (Helper.UserType != "Admin" && Helper.UserType != "Staff")
             {
-                btnAddExam.Enabled = false;
-                btnEditExam.Enabled = false;
-                btnDeleteExam.Enabled = false;
+                btnAddExam.Visible = false;
+                btnEditExam.Visible = false;
+                btnDeleteExam.Visible = false;
+                lblExamName.Visible = false;
+                txtExamName.Visible = false;
+                lblSubject.Visible = false;
+                cmbSubject.Visible = false;
+
             }
         }
 

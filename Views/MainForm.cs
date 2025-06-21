@@ -40,15 +40,12 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             else if (loggedInUser.Role == "Lecturer")
             {
                 btnUser.Enabled = false;
-                btnCourse.Enabled = false;
-                btnStudent.Enabled = false;
+                btnStaff.Enabled = false;
             }
             else if (loggedInUser.Role == "Student")
             {
                 btnUser.Enabled = false;
-                btnStudent.Enabled = false;
-                btnLecture.Enabled = false;
-                btnMark.Enabled = false;
+                btnStaff.Enabled = false;
 
             }
         }
