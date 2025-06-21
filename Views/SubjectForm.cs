@@ -70,41 +70,62 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtSubjectName.Text) || cmbCourse.SelectedItem == null)
+            try
             {
-                MessageBox.Show("All fields are required.");
-                return;
+                if (string.IsNullOrWhiteSpace(txtSubjectName.Text) || cmbCourse.SelectedItem == null)
+                {
+                    MessageBox.Show("All fields are required.");
+                    return;
+                }
+
+                string subjectName = txtSubjectName.Text.Trim();
+                int courseId = int.Parse(((ComboBoxItem)cmbCourse.SelectedItem).Value);
+
+                SubjectController.AddSubject(subjectName, courseId);
+                LoadSubjects();
+                ClearForm();
             }
-
-            string subjectName = txtSubjectName.Text.Trim();
-            int courseId = int.Parse(((ComboBoxItem)cmbCourse.SelectedItem).Value);
-
-            SubjectController.AddSubject(subjectName, courseId);
-            LoadSubjects();
-            ClearForm();
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (dgvSubject.SelectedRows.Count == 0) return;
+            try
+            {
+                if (dgvSubject.SelectedRows.Count == 0) return;
 
-            int id = Convert.ToInt32(dgvSubject.SelectedRows[0].Cells[0].Value);
-            string name = txtSubjectName.Text.Trim();
-            int courseId = int.Parse(((ComboBoxItem)cmbCourse.SelectedItem).Value);
+                int id = Convert.ToInt32(dgvSubject.SelectedRows[0].Cells[0].Value);
+                string name = txtSubjectName.Text.Trim();
+                int courseId = int.Parse(((ComboBoxItem)cmbCourse.SelectedItem).Value);
 
-            SubjectController.UpdateSubject(id, name, courseId);
-            LoadSubjects();
-            ClearForm();
+                SubjectController.UpdateSubject(id, name, courseId);
+                LoadSubjects();
+                ClearForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (dgvSubject.SelectedRows.Count == 0) return;
+            try
+            {
+                if (dgvSubject.SelectedRows.Count == 0) return;
 
-            int id = Convert.ToInt32(dgvSubject.SelectedRows[0].Cells[0].Value);
-            SubjectController.DeleteSubject(id);
-            LoadSubjects();
-            ClearForm();
+                int id = Convert.ToInt32(dgvSubject.SelectedRows[0].Cells[0].Value);
+                SubjectController.DeleteSubject(id);
+                LoadSubjects();
+                ClearForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void dgvSubject_CellContentClick(object sender, DataGridViewCellEventArgs e)

@@ -48,37 +48,81 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtCourseName.Text))
+            try
             {
-                MessageBox.Show("Course name required.");
-                return;
-            }
+                if (string.IsNullOrWhiteSpace(txtCourseName.Text))
+                {
+                    MessageBox.Show("Course name required.");
+                    return;
+                }
 
-            CourseController.AddCourse(txtCourseName.Text.Trim());
-            LoadCourses();
-            ClearForm();
+                CourseController.AddCourse(txtCourseName.Text.Trim());
+                LoadCourses();
+                ClearForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error while adding course:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (dgvCourse.SelectedRows.Count == 0) return;
+            try
+            {
+                if (dgvCourse.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Please select a course to update.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-            int id = Convert.ToInt32(dgvCourse.SelectedRows[0].Cells[0].Value);
-            string name = txtCourseName.Text.Trim();
+                int id = Convert.ToInt32(dgvCourse.SelectedRows[0].Cells[0].Value);
+                string name = txtCourseName.Text.Trim();
 
-            CourseController.UpdateCourse(id, name);
-            LoadCourses();
-            ClearForm();
+                if (string.IsNullOrWhiteSpace(name))
+                {
+                    MessageBox.Show("Course name cannot be empty.");
+                    return;
+                }
+
+                CourseController.UpdateCourse(id, name);
+                LoadCourses();
+                ClearForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error while updating course:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (dgvCourse.SelectedRows.Count == 0) return;
+            try
+            {
+                if (dgvCourse.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Please select a course to delete.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-            int id = Convert.ToInt32(dgvCourse.SelectedRows[0].Cells[0].Value);
-            CourseController.DeleteCourse(id);
-            LoadCourses();
-            ClearForm();
+                int id = Convert.ToInt32(dgvCourse.SelectedRows[0].Cells[0].Value);
+
+                var confirm = MessageBox.Show("Are you sure you want to delete this course?",
+                                              "Confirm Delete",
+                                              MessageBoxButtons.YesNo,
+                                              MessageBoxIcon.Question);
+
+                if (confirm == DialogResult.Yes)
+                {
+                    CourseController.DeleteCourse(id);
+                    LoadCourses();
+                    ClearForm();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error while deleting course:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void dgvCourse_CellContentClick(object sender, DataGridViewCellEventArgs e)

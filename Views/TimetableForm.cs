@@ -97,42 +97,70 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 
         private void btnAddTimetable_Click(object sender, EventArgs e)
         {
-            if (cmbSubject.SelectedItem == null || cmbRooms.SelectedItem == null || string.IsNullOrWhiteSpace(txtTimeSlot.Text))
+            try
             {
-                MessageBox.Show("Fill all fields.");
-                return;
+                if (cmbSubject.SelectedItem == null || cmbRooms.SelectedItem == null || string.IsNullOrWhiteSpace(txtTimeSlot.Text))
+                {
+                    MessageBox.Show("Fill all fields.");
+                    return;
+                }
+
+                var subject = (ComboBoxItem)cmbSubject.SelectedItem;
+                var room = (ComboBoxItem)cmbRooms.SelectedItem;
+
+                TimetableController.AddTimetable(int.Parse(subject.Value), txtTimeSlot.Text.Trim(), int.Parse(room.Value));
+                LoadTimetables();
+                ClearForm();
             }
-
-            var subject = (ComboBoxItem)cmbSubject.SelectedItem;
-            var room = (ComboBoxItem)cmbRooms.SelectedItem;
-
-            TimetableController.AddTimetable(int.Parse(subject.Value), txtTimeSlot.Text.Trim(), int.Parse(room.Value));
-            LoadTimetables();
-            ClearForm();
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnEditTimetable_Click(object sender, EventArgs e)
         {
-            if (dgvTimetables.SelectedRows.Count == 0) return;
+            try
+            {
+                if (dgvTimetables.SelectedRows.Count == 0)
+                    return;
 
-            int id = Convert.ToInt32(dgvTimetables.SelectedRows[0].Cells[0].Value);
-            var subject = (ComboBoxItem)cmbSubject.SelectedItem;
-            var room = (ComboBoxItem)cmbRooms.SelectedItem;
-            string timeSlot = txtTimeSlot.Text.Trim();
+                if (cmbSubject.SelectedItem == null || cmbRooms.SelectedItem == null || string.IsNullOrWhiteSpace(txtTimeSlot.Text))
+                {
+                    MessageBox.Show("Fill all fields.");
+                    return;
+                }
 
-            TimetableController.UpdateTimetable(id, int.Parse(subject.Value), timeSlot, int.Parse(room.Value));
-            LoadTimetables();
-            ClearForm();
+                int id = Convert.ToInt32(dgvTimetables.SelectedRows[0].Cells[0].Value);
+                var subject = (ComboBoxItem)cmbSubject.SelectedItem;
+                var room = (ComboBoxItem)cmbRooms.SelectedItem;
+                string timeSlot = txtTimeSlot.Text.Trim();
+
+                TimetableController.UpdateTimetable(id, int.Parse(subject.Value), timeSlot, int.Parse(room.Value));
+                LoadTimetables();
+                ClearForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnDeleteTimetable_Click(object sender, EventArgs e)
         {
-            if (dgvTimetables.SelectedRows.Count == 0) return;
+            try
+            {
+                if (dgvTimetables.SelectedRows.Count == 0) return;
 
-            int id = Convert.ToInt32(dgvTimetables.SelectedRows[0].Cells[0].Value);
-            TimetableController.DeleteTimetable(id);
-            LoadTimetables();
-            ClearForm();
+                int id = Convert.ToInt32(dgvTimetables.SelectedRows[0].Cells[0].Value);
+                TimetableController.DeleteTimetable(id);
+                LoadTimetables();
+                ClearForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void dgvTimetables_CellContentClick(object sender, DataGridViewCellEventArgs e)

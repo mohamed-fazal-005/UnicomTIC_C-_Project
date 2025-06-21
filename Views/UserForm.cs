@@ -24,22 +24,29 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtUsername.Text) ||
-                string.IsNullOrWhiteSpace(txtPassword.Text) ||
-                cmbRole.SelectedItem == null)
+            try
             {
-                MessageBox.Show("All fields are required.");
-                return;
+                if (string.IsNullOrWhiteSpace(txtUsername.Text) ||
+                    string.IsNullOrWhiteSpace(txtPassword.Text) ||
+                    cmbRole.SelectedItem == null)
+                {
+                    MessageBox.Show("All fields are required.");
+                    return;
+                }
+
+                UserController.AddUser(
+                    txtUsername.Text.Trim(),
+                    txtPassword.Text.Trim(),
+                    cmbRole.SelectedItem.ToString()
+                );
+
+                LoadUsers();
+                ClearForm();
             }
-
-            UserController.AddUser(
-                txtUsername.Text.Trim(),
-                txtPassword.Text.Trim(),
-                cmbRole.SelectedItem.ToString()
-            );
-
-            LoadUsers();
-            ClearForm();
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void UserForm_Load(object sender, EventArgs e)
@@ -81,26 +88,40 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 
         private void btnEditUser_Click(object sender, EventArgs e)
         {
-            if (dgvUsers.SelectedRows.Count == 0) return;
+            try
+            {
+                if (dgvUsers.SelectedRows.Count == 0) return;
 
-            int id = Convert.ToInt32(dgvUsers.SelectedRows[0].Cells[0].Value);
-            string username = txtUsername.Text.Trim();
-            string password = txtPassword.Text.Trim();
-            string role = cmbRole.SelectedItem.ToString();
+                int id = Convert.ToInt32(dgvUsers.SelectedRows[0].Cells[0].Value);
+                string username = txtUsername.Text.Trim();
+                string password = txtPassword.Text.Trim();
+                string role = cmbRole.SelectedItem.ToString();
 
-            UserController.UpdateUser(id, username, password, role);
-            LoadUsers();
-            ClearForm();
+                UserController.UpdateUser(id, username, password, role);
+                LoadUsers();
+                ClearForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnDeleteUser_Click(object sender, EventArgs e)
         {
-            if (dgvUsers.SelectedRows.Count == 0) return;
+            try
+            {
+                if (dgvUsers.SelectedRows.Count == 0) return;
 
-            int id = Convert.ToInt32(dgvUsers.SelectedRows[0].Cells[0].Value);
-            UserController.DeleteUser(id);
-            LoadUsers();
-            ClearForm();
+                int id = Convert.ToInt32(dgvUsers.SelectedRows[0].Cells[0].Value);
+                UserController.DeleteUser(id);
+                LoadUsers();
+                ClearForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void dgvUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)

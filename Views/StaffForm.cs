@@ -51,49 +51,70 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtStaffName.Text) ||
-               string.IsNullOrWhiteSpace(txtPosition.Text) ||
-               string.IsNullOrWhiteSpace(txtEmail.Text))
+            try
             {
-                MessageBox.Show("All fields are required.");
-                return;
+                if (string.IsNullOrWhiteSpace(txtStaffName.Text) ||
+                    string.IsNullOrWhiteSpace(txtPosition.Text) ||
+                    string.IsNullOrWhiteSpace(txtEmail.Text))
+                {
+                    MessageBox.Show("All fields are required.");
+                    return;
+                }
+
+                StaffController.AddStaff(
+                    txtStaffName.Text.Trim(),
+                    txtPosition.Text.Trim(),
+                    txtEmail.Text.Trim()
+                );
+
+                LoadStaff();
+                ClearForm();
             }
-
-            StaffController.AddStaff(
-                txtStaffName.Text.Trim(),
-                txtPosition.Text.Trim(),
-                txtEmail.Text.Trim()
-            );
-
-            LoadStaff();
-            ClearForm();
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (dgvStaff.SelectedRows.Count == 0) return;
+            try
+            {
+                if (dgvStaff.SelectedRows.Count == 0) return;
 
-            int id = Convert.ToInt32(dgvStaff.SelectedRows[0].Cells[0].Value);
+                int id = Convert.ToInt32(dgvStaff.SelectedRows[0].Cells[0].Value);
 
-            StaffController.UpdateStaff(
-                id,
-                txtStaffName.Text.Trim(),
-                txtPosition.Text.Trim(),
-                txtEmail.Text.Trim()
-            );
+                StaffController.UpdateStaff(
+                    id,
+                    txtStaffName.Text.Trim(),
+                    txtPosition.Text.Trim(),
+                    txtEmail.Text.Trim()
+                );
 
-            LoadStaff();
-            ClearForm();
+                LoadStaff();
+                ClearForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (dgvStaff.SelectedRows.Count == 0) return;
+            try
+            {
+                if (dgvStaff.SelectedRows.Count == 0) return;
 
-            int id = Convert.ToInt32(dgvStaff.SelectedRows[0].Cells[0].Value);
-            StaffController.DeleteStaff(id);
-            LoadStaff();
-            ClearForm();
+                int id = Convert.ToInt32(dgvStaff.SelectedRows[0].Cells[0].Value);
+                StaffController.DeleteStaff(id);
+                LoadStaff();
+                ClearForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void dgvStaff_CellContentClick(object sender, DataGridViewCellEventArgs e)

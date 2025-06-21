@@ -74,55 +74,99 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtLectureName.Text) ||
-                 string.IsNullOrWhiteSpace(txtQualification.Text) ||
-                 string.IsNullOrWhiteSpace(txtEmail.Text) ||
-                 cmbSubject.SelectedItem == null)
+            try
             {
-                MessageBox.Show("All fields are required.");
-                return;
+                if (string.IsNullOrWhiteSpace(txtLectureName.Text) ||
+                    string.IsNullOrWhiteSpace(txtQualification.Text) ||
+                    string.IsNullOrWhiteSpace(txtEmail.Text) ||
+                    cmbSubject.SelectedItem == null)
+                {
+                    MessageBox.Show("All fields are required.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (!int.TryParse(((ComboBoxItem)cmbSubject.SelectedItem).Value, out int subjectId))
+                {
+                    MessageBox.Show("Invalid subject selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                LectureController.AddLecture(
+                    txtLectureName.Text.Trim(),
+                    subjectId,
+                    txtQualification.Text.Trim(),
+                    txtEmail.Text.Trim()
+                );
+
+                LoadLectures();
+                ClearForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error while adding lecture:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            int subjectId = int.Parse(((ComboBoxItem)cmbSubject.SelectedItem).Value);
-
-            LectureController.AddLecture(
-                txtLectureName.Text.Trim(),
-                subjectId,
-                txtQualification.Text.Trim(),
-                txtEmail.Text.Trim()
-            );
-
-            LoadLectures();
-            ClearForm();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (dgvLecture.SelectedRows.Count == 0) return;
+            try
+            {
+                if (dgvLecture.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Please select a lecture to update.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-            int id = Convert.ToInt32(dgvLecture.SelectedRows[0].Cells[0].Value);
-            int subjectId = int.Parse(((ComboBoxItem)cmbSubject.SelectedItem).Value);
+                if (string.IsNullOrWhiteSpace(txtLectureName.Text) ||
+                    string.IsNullOrWhiteSpace(txtQualification.Text) ||
+                    string.IsNullOrWhiteSpace(txtEmail.Text) ||
+                    cmbSubject.SelectedItem == null)
+                {
+                    MessageBox.Show("All fields are required.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-            LectureController.UpdateLecture(
-                id,
-                txtLectureName.Text.Trim(),
-                subjectId,
-                txtQualification.Text.Trim(),
-                txtEmail.Text.Trim()
-            );
+                int id = Convert.ToInt32(dgvLecture.SelectedRows[0].Cells[0].Value);
 
-            LoadLectures();
-            ClearForm();
+                if (!int.TryParse(((ComboBoxItem)cmbSubject.SelectedItem).Value, out int subjectId))
+                {
+                    MessageBox.Show("Invalid subject selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                LectureController.UpdateLecture(
+                    id,
+                    txtLectureName.Text.Trim(),
+                    subjectId,
+                    txtQualification.Text.Trim(),
+                    txtEmail.Text.Trim()
+                );
+
+                LoadLectures();
+                ClearForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error while updating lecture:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (dgvLecture.SelectedRows.Count == 0) return;
+            try
+            {
+                if (dgvLecture.SelectedRows.Count == 0) return;
 
-            int id = Convert.ToInt32(dgvLecture.SelectedRows[0].Cells[0].Value);
-            LectureController.DeleteLecture(id);
-            LoadLectures();
-            ClearForm();
+                int id = Convert.ToInt32(dgvLecture.SelectedRows[0].Cells[0].Value);
+                LectureController.DeleteLecture(id);
+                LoadLectures();
+                ClearForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void dgvLecture_CellContentClick(object sender, DataGridViewCellEventArgs e)

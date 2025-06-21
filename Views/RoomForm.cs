@@ -56,38 +56,59 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtRoomName.Text) || cmbRoomType.SelectedItem == null)
+            try
             {
-                MessageBox.Show("Please fill all fields.");
-                return;
-            }
+                if (string.IsNullOrWhiteSpace(txtRoomName.Text) || cmbRoomType.SelectedItem == null)
+                {
+                    MessageBox.Show("Please fill all fields.");
+                    return;
+                }
 
-            RoomController.AddRoom(txtRoomName.Text.Trim(), cmbRoomType.SelectedItem.ToString());
-            LoadRooms();
-            ClearForm();
+                RoomController.AddRoom(txtRoomName.Text.Trim(), cmbRoomType.SelectedItem.ToString());
+                LoadRooms();
+                ClearForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (dgvRooms.SelectedRows.Count == 0) return;
+            try
+            {
+                if (dgvRooms.SelectedRows.Count == 0) return;
 
-            int id = Convert.ToInt32(dgvRooms.SelectedRows[0].Cells[0].Value);
-            string name = txtRoomName.Text.Trim();
-            string type = cmbRoomType.SelectedItem.ToString();
+                int id = Convert.ToInt32(dgvRooms.SelectedRows[0].Cells[0].Value);
+                string name = txtRoomName.Text.Trim();
+                string type = cmbRoomType.SelectedItem.ToString();
 
-            RoomController.UpdateRoom(id, name, type);
-            LoadRooms();
-            ClearForm();
+                RoomController.UpdateRoom(id, name, type);
+                LoadRooms();
+                ClearForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (dgvRooms.SelectedRows.Count == 0) return;
+            try
+            {
+                if (dgvRooms.SelectedRows.Count == 0) return;
 
-            int id = Convert.ToInt32(dgvRooms.SelectedRows[0].Cells[0].Value);
-            RoomController.DeleteRoom(id);
-            LoadRooms();
-            ClearForm();
+                int id = Convert.ToInt32(dgvRooms.SelectedRows[0].Cells[0].Value);
+                RoomController.DeleteRoom(id);
+                LoadRooms();
+                ClearForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void dgvRooms_CellContentClick(object sender, DataGridViewCellEventArgs e)

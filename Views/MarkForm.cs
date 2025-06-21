@@ -92,53 +92,74 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 
         private void btnAddMark_Click(object sender, EventArgs e)
         {
-            if (cmbStudent.SelectedItem == null || cmbExam.SelectedItem == null || string.IsNullOrWhiteSpace(txtScore.Text))
+            try
             {
-                MessageBox.Show("All fields required.");
-                return;
+                if (cmbStudent.SelectedItem == null || cmbExam.SelectedItem == null || string.IsNullOrWhiteSpace(txtScore.Text))
+                {
+                    MessageBox.Show("All fields required.");
+                    return;
+                }
+
+                if (!int.TryParse(txtScore.Text.Trim(), out int score))
+                {
+                    MessageBox.Show("Score must be a valid number.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                var student = (ComboBoxItem)cmbStudent.SelectedItem;
+                var exam = (ComboBoxItem)cmbExam.SelectedItem;
+
+                MarkController.AddMark(int.Parse(student.Value), int.Parse(exam.Value), score);
+                LoadMarks();
+                ClearForm();
             }
-            if (!int.TryParse(txtScore.Text.Trim(), out int score))
+            catch (Exception ex)
             {
-                MessageBox.Show("Score must be a valid number.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
-            var student = (ComboBoxItem)cmbStudent.SelectedItem;
-            var exam = (ComboBoxItem)cmbExam.SelectedItem;
-
-            MarkController.AddMark(int.Parse(student.Value), int.Parse(exam.Value), score);
-            LoadMarks();
-            ClearForm();
         }
 
         private void btnEditMark_Click(object sender, EventArgs e)
         {
-            if (dgvMark.SelectedRows.Count == 0) return;
-
-            if (!int.TryParse(txtScore.Text.Trim(), out int score))
+            try
             {
-                MessageBox.Show("Mark must be a number.");
-                return;
+                if (dgvMark.SelectedRows.Count == 0) return;
+
+                if (!int.TryParse(txtScore.Text.Trim(), out int score))
+                {
+                    MessageBox.Show("Mark must be a number.");
+                    return;
+                }
+
+                int markId = Convert.ToInt32(dgvMark.SelectedRows[0].Cells[0].Value);
+                var student = (ComboBoxItem)cmbStudent.SelectedItem;
+                var exam = (ComboBoxItem)cmbExam.SelectedItem;
+
+                MarkController.UpdateMark(markId, int.Parse(student.Value), int.Parse(exam.Value), score);
+                LoadMarks();
+                ClearForm();
             }
-
-            int markId = Convert.ToInt32(dgvMark.SelectedRows[0].Cells[0].Value);
-            var student = (ComboBoxItem)cmbStudent.SelectedItem;
-            var exam = (ComboBoxItem)cmbExam.SelectedItem;
-
-            MarkController.UpdateMark(markId, int.Parse(student.Value), int.Parse(exam.Value), score);
-            LoadMarks();
-            ClearForm();
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnDeleteMark_Click(object sender, EventArgs e)
         {
-            if (dgvMark.SelectedRows.Count == 0) return;
+            try
+            {
+                if (dgvMark.SelectedRows.Count == 0) return;
 
-            int markId = Convert.ToInt32(dgvMark.SelectedRows[0].Cells[0].Value);
-            MarkController.DeleteMark(markId);
-            LoadMarks();
-            ClearForm();
+                int markId = Convert.ToInt32(dgvMark.SelectedRows[0].Cells[0].Value);
+                MarkController.DeleteMark(markId);
+                LoadMarks();
+                ClearForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void dgvMark_CellContentClick(object sender, DataGridViewCellEventArgs e)

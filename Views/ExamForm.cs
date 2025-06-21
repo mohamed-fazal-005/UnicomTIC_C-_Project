@@ -74,39 +74,89 @@ namespace UTIC_WindowsForm_By_Fazal.Views
 
         private void btnEditExam_Click(object sender, EventArgs e)
         {
-            if (dgvExam.SelectedRows.Count == 0) return;
+            try
+            {
+                if (dgvExam.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Please select an exam to update.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-            int examId = Convert.ToInt32(dgvExam.SelectedRows[0].Cells[0].Value);
-            string examName = txtExamName.Text.Trim();
-            int subjectId = int.Parse(((ComboBoxItem)cmbSubject.SelectedItem).Value);
+                if (string.IsNullOrWhiteSpace(txtExamName.Text) || cmbSubject.SelectedItem == null)
+                {
+                    MessageBox.Show("Exam name and subject are required.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
 
-            ExamController.UpdateExam(examId, examName, subjectId);
-            LoadExams();
-            ClearForm();
+                int examId = Convert.ToInt32(dgvExam.SelectedRows[0].Cells[0].Value);
+                string examName = txtExamName.Text.Trim();
+                int subjectId = int.Parse(((ComboBoxItem)cmbSubject.SelectedItem).Value);
+
+                ExamController.UpdateExam(examId, examName, subjectId);
+                LoadExams();
+                ClearForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error while updating exam:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnAddExam_Click(object sender, EventArgs e)
         {
-            if (cmbSubject.SelectedItem == null || string.IsNullOrWhiteSpace(txtExamName.Text))
+            try
             {
-                MessageBox.Show("Fill all fields.");
-                return;
-            }
+                if (cmbSubject.SelectedItem == null || string.IsNullOrWhiteSpace(txtExamName.Text))
+                {
+                    MessageBox.Show("All fields are required.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-            var subject = (ComboBoxItem)cmbSubject.SelectedItem;
-            ExamController.AddExam(txtExamName.Text.Trim(), int.Parse(subject.Value));
-            LoadExams();
-            ClearForm();
+                var subject = (ComboBoxItem)cmbSubject.SelectedItem;
+
+                if (!int.TryParse(subject.Value, out int subjectId))
+                {
+                    MessageBox.Show("Invalid subject selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                ExamController.AddExam(txtExamName.Text.Trim(), subjectId);
+                LoadExams();
+                ClearForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error while adding exam:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnDeleteExam_Click(object sender, EventArgs e)
         {
-            if (dgvExam.SelectedRows.Count == 0) return;
+            try
+            {
+                if (dgvExam.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Please select an exam to delete.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-            int examId = Convert.ToInt32(dgvExam.SelectedRows[0].Cells[0].Value);
-            ExamController.DeleteExam(examId);
-            LoadExams();
-            ClearForm();
+                var confirm = MessageBox.Show("Are you sure you want to delete this exam?",
+                                              "Confirm Delete",
+                                              MessageBoxButtons.YesNo,
+                                              MessageBoxIcon.Question);
+
+                if (confirm == DialogResult.Yes)
+                {
+                    int examId = Convert.ToInt32(dgvExam.SelectedRows[0].Cells[0].Value);
+                    ExamController.DeleteExam(examId);
+                    LoadExams();
+                    ClearForm();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error while deleting exam:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private class ComboBoxItem
         {
