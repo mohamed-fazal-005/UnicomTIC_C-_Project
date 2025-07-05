@@ -29,17 +29,31 @@ namespace UTIC_WindowsForm_By_Fazal.Views
             string username = txtUsername.Text.Trim();
             string password = txtPassword.Text.Trim();
 
-            var user = await LoginController.LoginUserAsync(username, password);
-            Helper.UserType = user.Role;
+            try
+            {
+                var user = await LoginController.LoginUserAsync(username, password);
 
-            if (user != null)
-            {
-                this.Hide();
-                new MainForm(user).Show();
+                if (user != null)
+                {
+                    Helper.UserType = user.Role;
+
+                    if (string.IsNullOrEmpty(Helper.UserType))
+                    {
+                        MessageBox.Show("Error: User role not found.");
+                        return;
+                    }
+
+                    this.Hide();
+                    new MainForm(user).Show();
+                }
+                else
+                {
+                    MessageBox.Show("Invalid username or password.");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Invalid username or password.");
+                MessageBox.Show($"An error occurred: {ex.Message}");
             }
         }
 
